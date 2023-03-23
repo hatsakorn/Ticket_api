@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
-      contactInfomation: {
+      contactInformation: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Ticket.associate = (db) => {
-    Ticket.belongsTo(db.Ticket, {
+    Ticket.belongsTo(db.User, {
       foreignKey: {
         name: "userId",
       },
