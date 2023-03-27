@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 // sequelize.sync({ force: true });
-app.use("/", authRoute);
+app.use("/auth", authRoute);
 app.use("/ticket", ticketRoute);
 
 app.use(notFoundMiddleware);
