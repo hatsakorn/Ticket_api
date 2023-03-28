@@ -1,4 +1,5 @@
-const { Ticket, User, sequelize } = require("../models");
+const { Op } = require("sequelize");
+const { Ticket, User, Sequelize } = require("../models");
 const createError = require("../utils/create-error");
 
 exports.getTicket = async (req, res, next) => {
@@ -7,6 +8,7 @@ exports.getTicket = async (req, res, next) => {
       // where: {
       //   userId: req.user.id,
       // },
+
       include: [
         {
           model: User,
@@ -63,47 +65,6 @@ exports.editTicket = async (req, res, next) => {
     });
 
     res.status(200).json("Ticket is updated");
-  } catch (err) {
-    next(err);
-  }
-};
-
-exports.countAllTicket = async (req, res, next) => {
-  try {
-    const count = await Ticket.count();
-    res.status(200).json(count);
-  } catch (err) {
-    next(err);
-  }
-};
-exports.countPending = async (req, res, next) => {
-  try {
-    const count = await Ticket.count({ where: { status: "Pending" } });
-    res.status(200).json(count);
-  } catch (err) {
-    next(err);
-  }
-};
-exports.countAccepted = async (req, res, next) => {
-  try {
-    const count = await Ticket.count({ where: { status: "Accepted" } });
-    res.status(200).json(count);
-  } catch (err) {
-    next(err);
-  }
-};
-exports.countResolved = async (req, res, next) => {
-  try {
-    const count = await Ticket.count({ where: { status: "Resolved" } });
-    res.status(200).json(count);
-  } catch (err) {
-    next(err);
-  }
-};
-exports.countRejected = async (req, res, next) => {
-  try {
-    const count = await Ticket.count({ where: { status: "Rejected" } });
-    res.status(200).json(count);
   } catch (err) {
     next(err);
   }
